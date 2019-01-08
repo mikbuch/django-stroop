@@ -1,7 +1,7 @@
 p {
     font-size: 18px;
     font-family: Arial, Verdana, sans-serif;
-    color: white;
+    color: black;
     text-align: left;
     text-decoration: none;
 }
@@ -9,15 +9,15 @@ p {
 h2{
   font-size: 30px;
   font-family: Arial, Verdana, sans-serif;
-  color: #FACF89;
-  background-color: #BD8E44;
+  color: #ffffff;
+  background-color: #959595;
   text-align: center;
   text-decoration: none;
 }
 
 
 body {
-  background-color: #EBB154;
+  background-color: #d2d2d2;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center;
@@ -28,8 +28,8 @@ body {
 }
 
 .heading_back {
-  color: #FACF89;
-  background-color: #BD8E44;
+  color: #ffffff;
+  background-color: #6d6d6d;
   text-align: center;
 }
 
@@ -37,5 +37,5 @@ body {
   font-size: 40px;
   font-family: Arial, Verdana, sans-serif;
   text-align: center;
-  color: #F7E6C6
+  color: white
 }
