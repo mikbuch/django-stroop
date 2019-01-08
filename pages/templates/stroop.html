@@ -1,0 +1,14 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <title>Eksperyment</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/stroop.css' %}" />
+</head>
+<body>
+  <h1>Hi {{ person }}</h1>
+  <p>Zgodny {{ zgodne.zielony }}</p>
+  <p>Niezgodny {{ niezgodne.pstrokaty }}</p>
+</body>
+</html>

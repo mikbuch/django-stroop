@@ -1,0 +1,41 @@
+p {
+    font-size: 18px;
+    font-family: Arial, Verdana, sans-serif;
+    color: white;
+    text-align: left;
+    text-decoration: none;
+}
+
+h2{
+  font-size: 30px;
+  font-family: Arial, Verdana, sans-serif;
+  color: #FACF89;
+  background-color: #BD8E44;
+  text-align: center;
+  text-decoration: none;
+}
+
+
+body {
+  background-color: #EBB154;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position: center;
+  background-size: 100%;
+  margin: 15px;
+  padding: 15px;
+}
+
+.heading_back {
+  color: #FACF89;
+  background-color: #BD8E44;
+  text-align: center;
+}
+
+.heading {
+  font-size: 40px;
+  font-family: Arial, Verdana, sans-serif;
+  text-align: center;
+  color: #F7E6C6
+}

@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <title>Efekt Stroopa</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/page.css' %}" />
+</head>
+   <body>
+     <!-- <div> class="heading_back" >
+       <p class="heading">Wykonaj sam test Stroopa!</p>
+   </div> -->
+   <div>
+      {% block content %}
+      {% endblock %}
+    </div>
+  </body>
+</html>
