@@ -1,0 +1,88 @@
+{
+"zmienne_z" : [
+        {
+            "name" :  "zielony" ,
+            "color" :  "green"
+        },
+        {
+            "name" :  "niebieski" ,
+            "color" :  "blue"
+        }
+        {
+            "name" :  "czerwony" ,
+            "color" :  "red"
+        },
+        {
+            "name" :  "żółty" ,
+            "color" :  "yellow"
+        }
+    ],
+"zmienne_n":[
+        {
+            "name" :  "zielony" ,
+            "color" :  "red"
+        },
+        {
+            "name" :  "zielony" ,
+            "color" :  "blue"
+        }
+        {
+            "name" :  "zielony" ,
+            "color" :  "yellow"
+        },
+        {
+            "name" :  "niebieki" ,
+            "color" :  "yellow"
+        }
+        {
+            "name" :  "niebieki" ,
+            "color" :  "red"
+        },
+        {
+            "name" :  "niebieski" ,
+            "color" :  "green"
+        }
+        {
+            "name" :  "czerwony" ,
+            "color" :  "yellow"
+        },
+        {
+            "name" :  "czerwony" ,
+            "color" :  "green"
+        }
+        {
+            "name" :  "czerwony" ,
+            "color" :  "blue"
+        },
+        {
+            "name" :  "żółty" ,
+            "color" :  "green"
+        }
+        {
+            "name" :  "żółty" ,
+            "color" :  "red"
+        },
+        {
+            "name" :  "żółty" ,
+            "color" :  "blue"
+        }
+    ],
+"zmienne_k":[
+        {
+            "name" :  "xxxxxxx" ,
+            "color" :  "green"
+        },
+        {
+            "name" :  "xxxxxxx" ,
+            "color" :  "blue"
+        }
+        {
+            "name" :  "xxxxxxx" ,
+            "color" :  "red"
+        },
+        {
+            "name" :  "xxxxxxx" ,
+            "color" :  "yellow"
+        }
+      ]
+    }
