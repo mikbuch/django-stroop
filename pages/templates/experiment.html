@@ -2,6 +2,110 @@
 
 {% block content %}
 
-<p> xxxxxx Zgodny {{ niezgodne.pstrokaty }} <p>
+<p id="demo"> ble ble </p>
 
-{% endblock %}
+<p id="printReactionTime"></p>
+
+<div id="box"></div>
+
+<input type="text" size="40" onkeypress="myFunction(event)" autofocus style="margin-top:300px">
+
+<p id="demo2"></p>
+<!-- <p> xxxxxx Zgodny {{ niezgodne.pstrokaty }} <p> -->
+
+<script>
+  var rec = JSON.parse('{{ parameters|safe }}');
+  console.log('test');
+  console.log(Object.keys(rec.zgodne)[0]);
+
+  // var json = JSON.parse(rec);
+
+  var requestURL = 'https://raw.githubusercontent.com/mikbuch/django-stroop/master/zmienne.json';
+
+  document.getElementById("demo").innerHTML = Object.keys(rec.zgodne)[0];
+  document.getElementById("demo").style.color = rec.zgodne[Object.keys(rec.zgodne)[0]];
+
+  function getRandomColor() {
+
+  				var letters = "0123456789ABCDEF".split('');
+  				var color = "#";
+  				for (var i = 0; i < 6; i++) {
+  					color += letters[Math.round(Math.random() * 15)];
+  				} //ends for loop
+  				return color;
+
+
+  			} // ends getRandomColor Function
+
+
+  			var clickedTime; var createdTime; var reactionTime;
+
+  			function makeBox() {
+  					var time=Math.random();
+  					time=time*3000;
+              console.log(time);
+
+  				setTimeout(function() {
+
+  					if (Math.random()>0.5) {
+
+  						document.getElementById("box").style.borderRadius="100px";
+
+  						} else {
+
+  							document.getElementById("box").style.borderRadius="0";
+  						}
+
+  					var top= Math.random();
+  						top= top*300;
+  					var left= Math.random();
+  						left= left*500;
+
+  					document.getElementById("box").style.top = top + "px";
+  					document.getElementById("box").style.left = left + "px";
+
+  					document.getElementById("box").style.backgroundColor=getRandomColor();
+
+  					document.getElementById("box").style.display="block";
+
+  					createdTime=Date.now();
+
+  				}, time);
+
+  			}
+
+  			document.getElementById("demo").onclick=function() {
+
+  				clickedTime=Date.now();
+
+
+  				reactionTime=(clickedTime-createdTime)/1000;
+            console.log(reactionTime);
+
+  				document.getElementById("printReactionTime").innerHTML="Your Reaction Time is: " + reactionTime + "seconds";
+
+  				this.style.display="none";
+
+  				makeBox();
+
+
+  			}
+
+  			makeBox();
+
+        input.addEventListener('keypress', logKey);
+
+        function myFunction(event) {
+          var x = event.which || event.keyCode;
+          document.getElementById("demo2").innerHTML = "The Unicode value is: " + x;
+
+  console.log(x);
+
+}
+
+</script>
+
+{% endblock content %}
+
+<!-- {% block js %}
+{% endblock js %} -->
