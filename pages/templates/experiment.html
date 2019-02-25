@@ -2,27 +2,55 @@
 
 {% block content %}
 
-<p id="demo">stimuli go here</p>
+<p id="demo">Press any key to start the experiment</p>
 
 <script>
-    var rec = JSON.parse('{{ parameters|safe }}');
-    console.log('test');
-    console.log(Object.keys(rec.zgodne)[0]);
+    var all_stim = JSON.parse('{{ parameters|safe }}');
+
+    console.log('zgodne');
+    console.log(all_stim.zgodne);
+    console.log('niezgodne');
+    console.log(all_stim.niezgodne);
+    console.log('kontrolne');
+    console.log(all_stim.kontrolne);
 
     var requestURL = 'https://raw.githubusercontent.com/mikbuch/django-stroop/master/zmienne.json';
 
-    document.getElementById("demo").innerHTML = Object.keys(rec.zgodne)[0];
-    document.getElementById("demo").style.color = rec.zgodne[Object.keys(rec.zgodne)[0]];
+    var randomProperty = function (obj) {
+        var keys = Object.keys(obj)
+        return obj[keys[ keys.length * Math.random() << 0]];
+    };
+
+    var results = new Array();
 
     createdTime=Date.now();
+    console.log(createdTime);
 
     $(document).keypress(function(e){
 
+        rand_cond = randomProperty(all_stim);
+        rand_stim = randomProperty(rand_cond);
+        stim_key = Object.keys(rand_stim)[0];
+        stim_value = rand_stim[stim_key];
+        document.getElementById("demo").innerHTML = stim_key;
+        document.getElementById("demo").style.color = stim_value;
+
         pressedTime=Date.now();
         reactionTime=(pressedTime-createdTime);
-        console.log(reactionTime);
-        console.log(e.which);
+        key_pressed = e.which;
+        // console.log("RT");
+        // console.log(reactionTime);
+        // console.log("key");
+        // console.log(key_pressed);
+
+        //TODO: add condition
+        results.push([stim_key, stim_value, reactionTime, key_pressed]);
+
+        createdTime=Date.now();
+
     });
+
+    console.log(results);
 
 </script>
 
