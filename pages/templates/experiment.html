@@ -4,53 +4,93 @@
 
 <p id="demo">Press any key to start the experiment</p>
 
+<div id="output"></div>
+
 <script>
-    var all_stim = JSON.parse('{{ parameters|safe }}');
 
-    console.log('zgodne');
-    console.log(all_stim.zgodne);
-    console.log('niezgodne');
-    console.log(all_stim.niezgodne);
-    console.log('kontrolne');
-    console.log(all_stim.kontrolne);
+  var number_of_trials = 5;
+  var trials_counter = 0;
 
-    var requestURL = 'https://raw.githubusercontent.com/mikbuch/django-stroop/master/zmienne.json';
+  var all_stim = JSON.parse('{{ parameters|safe }}');
 
-    var randomProperty = function (obj) {
-        var keys = Object.keys(obj)
-        return obj[keys[ keys.length * Math.random() << 0]];
-    };
+  console.log('zgodne');
+  console.log(all_stim.zgodne);
+  console.log('niezgodne');
+  console.log(all_stim.niezgodne);
+  console.log('kontrolne');
+  console.log(all_stim.kontrolne);
 
-    var results = new Array();
+  var requestURL = 'https://raw.githubusercontent.com/mikbuch/django-stroop/master/zmienne.json';
 
-    createdTime=Date.now();
-    console.log(createdTime);
+  var randomProperty = function(obj) {
+    var keys = Object.keys(obj)
+    return obj[keys[keys.length * Math.random() << 0]];
+  };
 
-    $(document).keypress(function(e){
+  var results = new Array();
 
-        rand_cond = randomProperty(all_stim);
-        rand_stim = randomProperty(rand_cond);
-        stim_key = Object.keys(rand_stim)[0];
-        stim_value = rand_stim[stim_key];
-        document.getElementById("demo").innerHTML = stim_key;
-        document.getElementById("demo").style.color = stim_value;
+  createdTime = Date.now();
+  console.log(createdTime);
 
-        pressedTime=Date.now();
-        reactionTime=(pressedTime-createdTime);
-        key_pressed = e.which;
-        // console.log("RT");
-        // console.log(reactionTime);
-        // console.log("key");
-        // console.log(key_pressed);
+  console.log(results);
 
-        //TODO: add condition
-        results.push([stim_key, stim_value, reactionTime, key_pressed]);
+  var arrayToString = function(arr) {
+    let str = "";
+    for (let item of arr) {
+      str += item + "\n";
+    }
+    return str;
+  }
 
-        createdTime=Date.now();
-
+  var createBolb = function() {
+    var plainResults = arrayToString(results);
+    console.log(plainResults);
+    // var jsonse = JSON.stringify(cleanScript);
+    var blob = new Blob([plainResults], {
+      type: "text/plain"
     });
+    var url = URL.createObjectURL(blob);
 
-    console.log(results);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = "results.csv";
+    a.textContent = "Download results";
+
+    document.getElementById('output').appendChild(a);
+  }
+
+  $(document).keypress(function(e) {
+
+    rand_cond = randomProperty(all_stim);
+    rand_stim = randomProperty(rand_cond);
+    stim_key = Object.keys(rand_stim)[0];
+    stim_value = rand_stim[stim_key];
+    document.getElementById("demo").innerHTML = stim_key;
+    document.getElementById("demo").style.color = stim_value;
+
+    pressedTime = Date.now();
+    reactionTime = (pressedTime - createdTime);
+    key_pressed = e.which;
+    // console.log("RT");
+    // console.log(reactionTime);
+    // console.log("key");
+    // console.log(key_pressed);
+
+    //TODO: add condition
+    results.push([stim_key, stim_value, reactionTime, key_pressed]);
+
+    createdTime = Date.now();
+
+    trials_counter += 1;
+    // console.log(trials_counter);
+    // console.log(number_of_trials);
+    // console.log(trials_counter == number_of_trials);
+
+    if (trials_counter == number_of_trials) {
+      createBolb();
+    }
+
+  });
 
 </script>
 
