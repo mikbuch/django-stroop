@@ -2,9 +2,9 @@
 
 {% block content %}
 
-<p id="demo">Press any key to start the experiment</p>
+<p id="demo" class="middle">Naciśnij Enter, aby rozpocząć eksperyment</p>
 
-<div id="output"></div>
+<div id="output" class="middle"></div>
 
 <script>
 
@@ -59,6 +59,12 @@
     document.getElementById('output').appendChild(a);
   }
 
+  function removeElement(elementId) {
+    // Removes an element from the document
+    var element = document.getElementById(elementId);
+    element.parentNode.removeChild(element);
+  }
+
   $(document).keypress(function(e) {
 
     rand_cond = randomProperty(all_stim);
@@ -88,6 +94,7 @@
 
     if (trials_counter == number_of_trials) {
       createBolb();
+      removeElement("demo");
     }
 
   });
