@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p id="demo" class="middle">Naciśnij Enter, aby rozpocząć serię próbną</p>
+
+<div id="output" class="middle"></div>
+
+<script>
+
+  var number_of_trials = 30;
+  var trials_counter = 0;
+
+  var all_stim = JSON.parse('{{ parameters|safe }}');
+
+  console.log('zgodne');
+  console.log(all_stim.zgodne);
+  console.log('niezgodne');
+  console.log(all_stim.niezgodne);
+  console.log('kontrolne');
+  console.log(all_stim.kontrolne);
+
+  var requestURL = 'https://raw.githubusercontent.com/mikbuch/django-stroop/master/zmienne.json';
+
+  var randomProperty = function(obj) {
+    var keys = Object.keys(obj)
+    return obj[keys[keys.length * Math.random() << 0]];
+  };
+
+  var results = new Array();
+
+  console.log(results);
+
+  function removeElement(elementId) {
+    // Removes an element from the document
+    var element = document.getElementById(elementId);
+    element.parentNode.removeChild(element);
+  }
+
+  $(document).keypress(function(e) {
+
+    key_pressed = e.which;
+
+    // Display stimulus
+    rand_cond = randomProperty(all_stim);
+    rand_stim = randomProperty(rand_cond);
+    stim_key = Object.keys(rand_stim)[0];
+    stim_value = rand_stim[stim_key];
+    document.getElementById("demo").innerHTML = stim_key;
+    document.getElementById("demo").style.color = stim_value;
+
+    if (key_pressed != 13) {
+      pressedTime = Date.now();
+      reactionTime = (pressedTime - createdTime);
+      console.log("RT");
+      console.log(reactionTime);
+      console.log("key");
+      console.log(key_pressed);
+
+      //TODO: add condition
+      results.push([stim_key, stim_value, reactionTime, key_pressed]);
+
+      createdTime = Date.now();
+
+      trials_counter += 1;
+      // console.log(trials_counter);
+      // console.log(number_of_trials);
+      // console.log(trials_counter == number_of_trials);
+
+      if (trials_counter == number_of_trials) {
+        removeElement("demo");
+      }
+    }
+  });
+
+</script>
+
+{% endblock content %}
