@@ -8,7 +8,7 @@
 
 <script>
 
-  var number_of_trials = 5;
+  var number_of_trials = 192;
   var trials_counter = 0;
 
   var all_stim = JSON.parse('{{ parameters|safe }}');
@@ -37,7 +37,7 @@
   var arrayToString = function(arr) {
     let str = "";
     for (let item of arr) {
-      str += item + "\n";
+      str += item + "\r\n";
     }
     return str;
   }
