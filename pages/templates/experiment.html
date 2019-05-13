@@ -67,6 +67,9 @@
 
   $(document).keypress(function(e) {
 
+    key_pressed = e.which;
+
+    // Display stimulus
     rand_cond = randomProperty(all_stim);
     rand_stim = randomProperty(rand_cond);
     stim_key = Object.keys(rand_stim)[0];
@@ -74,29 +77,29 @@
     document.getElementById("demo").innerHTML = stim_key;
     document.getElementById("demo").style.color = stim_value;
 
-    pressedTime = Date.now();
-    reactionTime = (pressedTime - createdTime);
-    key_pressed = e.which;
-    // console.log("RT");
-    // console.log(reactionTime);
-    // console.log("key");
-    // console.log(key_pressed);
+    if (key_pressed != 13) {
+      pressedTime = Date.now();
+      reactionTime = (pressedTime - createdTime);
+      console.log("RT");
+      console.log(reactionTime);
+      console.log("key");
+      console.log(key_pressed);
 
-    //TODO: add condition
-    results.push([stim_key, stim_value, reactionTime, key_pressed]);
+      //TODO: add condition
+      results.push([stim_key, stim_value, reactionTime, key_pressed]);
 
-    createdTime = Date.now();
+      createdTime = Date.now();
 
-    trials_counter += 1;
-    // console.log(trials_counter);
-    // console.log(number_of_trials);
-    // console.log(trials_counter == number_of_trials);
+      trials_counter += 1;
+      // console.log(trials_counter);
+      // console.log(number_of_trials);
+      // console.log(trials_counter == number_of_trials);
 
-    if (trials_counter == number_of_trials) {
-      createBolb();
-      removeElement("demo");
+      if (trials_counter == number_of_trials) {
+        createBolb();
+        removeElement("demo");
+      }
     }
-
   });
 
 </script>
