@@ -2,23 +2,16 @@
 
 {% block content %}
 
-<p id="demo" class="middle">Naciśnij Enter, aby rozpocząć serię próbną</p>
+<p id="demo" class="pre_middle">Naciśnij Enter, aby rozpocząć serię próbną</p>
 
 <div id="output" class="middle"></div>
 
 <script>
 
-  var number_of_trials = 30;
+  var number_of_trials = 20;
   var trials_counter = 0;
 
   var all_stim = JSON.parse('{{ parameters|safe }}');
-
-  console.log('zgodne');
-  console.log(all_stim.zgodne);
-  console.log('niezgodne');
-  console.log(all_stim.niezgodne);
-  console.log('kontrolne');
-  console.log(all_stim.kontrolne);
 
   var requestURL = 'https://raw.githubusercontent.com/mikbuch/django-stroop/master/zmienne.json';
 
@@ -28,8 +21,6 @@
   };
 
   var results = new Array();
-
-  console.log(results);
 
   function removeElement(elementId) {
     // Removes an element from the document
@@ -50,17 +41,12 @@
     document.getElementById("demo").style.color = stim_value;
 
     if (key_pressed != 13) {
-      pressedTime = Date.now();
-      reactionTime = (pressedTime - createdTime);
       console.log("RT");
-      console.log(reactionTime);
       console.log("key");
       console.log(key_pressed);
 
       //TODO: add condition
-      results.push([stim_key, stim_value, reactionTime, key_pressed]);
-
-      createdTime = Date.now();
+      results.push([stim_key, stim_value, key_pressed]);
 
       trials_counter += 1;
       // console.log(trials_counter);
@@ -74,5 +60,9 @@
   });
 
 </script>
+
+<center><img s src="media/tarcza.png"></center>
+
+<a href="{% url 'experiment' %}">Rozpocznij eksperyment</a>
 
 {% endblock content %}
